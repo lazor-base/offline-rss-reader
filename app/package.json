@@ -1,0 +1,33 @@
+{
+	"main": "index.html",
+	"name": "offline-rss-reader",
+	"description": "A self contained RSS reader.",
+	"version": "0.1.0",
+	"keywords": ["rss", "offline"],
+	"window": {
+		"icon": "icon.png",
+		"toolbar": true,
+		"width": 800,
+		"height": 500,
+		"position": "center",
+		"min_width": 400,
+		"min_height": 200,
+		"max_width": 800,
+		"max_height": 600
+	},
+	"bugs": "https://github.com/lazor-base/offline-rss-reader/issues/new",
+	"maintainers": [{
+		"name": "Christopher Hall",
+		"email": "Biomech.ArkahnX@gmail.com",
+		" web": "http://arka-tech.net"
+	}],
+	"contributors": [{
+		"name": "Christopher Hall",
+		"email": "Biomech.ArkahnX@gmail.com",
+		" web": "http://arka-tech.net"
+	}],
+	"repositories": [{
+		"type": "git",
+		"url": "https://github.com/lazor-base/offline-rss-reader.git"
+	}]
+}
