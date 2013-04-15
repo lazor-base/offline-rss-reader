@@ -1,0 +1,1 @@
+This is a simple app designed to provide offline access to RSS feeds. this app won't access any special dependancies and will be completely self contained.
