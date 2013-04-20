@@ -3,8 +3,50 @@
 	<head>
 		<title>Offline RSS Reader</title>
 		<link rel="shortcut icon" href="icon.ico" />
+		<link href="style/main.css" rel="stylesheet" media="all" />
 	</head>
 	<body>
+		<section>
+			<header id="mainHeader">
+				<img src="icon.ico" width="32" height="32" align="middle" />
+				<section><h2>Offline RSS Reader<h2></section>
+				<nav>
+					<ul>
+						<li><button id="showDevTools">Dev tools</button></li>
+						<li><button id="fullWindow">Full screen</button></li>
+						<li><button id="hideWindow">Minimize</button></li>
+						<li><button id="maxWindow">Maximize</button></li>
+						<li><button id="closeWindow">Close</button></li>
+					</ul>
+				</nav>
+			</header>
+			<nav>
+				<ul id="leftGroup">
+
+					<li><input type="search" placeholder="Search or Subscribe" /></li>
+					<li><input type="submit" value="Submit" /></li>
+				</ul>
+				<ul id="middleGroup">
+					<li><button id="">Mark all as read</button></li>
+					<li><button id="">All items</button></li>
+				</ul>
+				<ul id="rightGroup">
+					<li><button id="">Up</button></li>
+					<li><button id="">Down</button></li>
+					<li><button id="reloadWindow">Reload</button></li>
+					<li><button id="">Options</button></li>
+				</ul>
+			</nav>
+			<aside>Some Sidebar</aside>
+			<article>
+				<header>Some Title</header>
+				<section>
+					<p>Some Content</p>
+				</section>
+				<footer>Some credits</footer>
+			</article>
+		</section>
+		<script src="js/jquery-2.0.0-beta3.js"></script>
 		<script src="js/init.js"></script>
 	</body>
 </html>

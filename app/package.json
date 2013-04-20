@@ -6,14 +6,13 @@
 	"keywords": ["rss", "offline"],
 	"window": {
 		"icon": "icon.png",
-		"toolbar": true,
+		"toolbar": false,
 		"width": 800,
-		"height": 500,
+		"height": 600,
 		"position": "center",
-		"min_width": 400,
-		"min_height": 200,
-		"max_width": 800,
-		"max_height": 600
+		"min_width": 800,
+		"min_height": 600,
+		"frame":false
 	},
 	"bugs": "https://github.com/lazor-base/offline-rss-reader/issues/new",
 	"maintainers": [{
