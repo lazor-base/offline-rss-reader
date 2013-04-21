@@ -1,0 +1,20 @@
+{
+	"categories": [{
+		"id": "reading",
+		"string": "Reading"
+	}],
+	"configs": [{
+		"string": "Articles to view.",
+		"category": "reading",
+		"id": "itemMode",
+		"configType": "toggle",
+		"uiType": "button",
+		"values": [{
+			"string": "All items"
+		}, {
+			"string": "Unread items"
+		}],
+		"value":0,
+		"tags": ["all items", "unread items"]
+	}]
+}

@@ -3,6 +3,7 @@
 }
 
 html, body {
+	font-family: 'Segoe UI', Tahoma, sans-serif;
 	margin:0;
 	padding:0;
 	height:100%;
@@ -89,6 +90,9 @@ nav ul {
 nav li {
 	display:inline;
 }
+aside {
+	overflow-y:scroll;
+}
 
 #leftGroup {
 	position: absolute;
@@ -116,10 +120,39 @@ footer {
 
 aside {
 	position:absolute;
-	left:0;
+	left:2px;
 	top:5em;
-	bottom:0;
+	bottom:2px;
 	width:236px;
 	padding:7px;
 }
 
+
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-track:hover {
+    background: rgba(0,0,0,0.1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(200,200,200,0.8);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(150,150,150,0.8);
+}
+::-webkit-scrollbar-thumb:active {
+    background: rgba(100,100,100,0.8);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(225,225,225,0.4);
+}

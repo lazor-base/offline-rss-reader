@@ -169,3 +169,6 @@ pip-log.txt
 *.dll
 *.exe
 *.pak
+config.json
+feeds.json
+subscriptions.xml

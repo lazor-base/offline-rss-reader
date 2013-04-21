@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Offline RSS Reader</title>
+		<title>Options - Offline RSS Reader</title>
 		<link rel="shortcut icon" href="icon.ico" />
 		<link href="style/main.css" rel="stylesheet" media="all" />
 		<link href="style/chrome.css" rel="stylesheet" media="all" />
 		<link href="style/button.css" rel="stylesheet" media="all" />
+		<link href="style/options.css" rel="stylesheet" media="all" />
 	</head>
 	<body>
 		<section>
 			<header id="mainHeader">
 				<img src="icon.ico" width="32" height="32" align="middle" />
-				<section><h2>Offline RSS Reader<h2></section>
+				<section><h2>Offline RSS Reader Options<h2></section>
 				<nav>
 					<ul>
 						<li><button id="showDevTools">Dev tools</button></li>
 						<li><button id="fullWindow">Fullscreen</button></li>
 						<div class="buttonGroup">
-						<li><button id="hideWindow">Minimize</button></li>
-						<li><button id="maxWindow">Maximize</button></li>
-						<li><button id="closeWindow">Close</button></li>
+							<li><button id="hideWindow">Minimize</button></li>
+							<li><button id="maxWindow">Maximize</button></li>
+							<li><button id="closeWindow">Close</button></li>
 						</div>
 					</ul>
 				</nav>
@@ -27,26 +28,32 @@
 			<nav>
 				<ul id="leftGroup">
 					<div class="buttonGroup">
-					<li><input type="search" placeholder="Search or Subscribe" /></li>
+					<li><input type="search" placeholder="Search options" /></li>
 					<li><input type="submit" value="Submit" /></li>
 					</div>
 				</ul>
 				<ul id="middleGroup">
-					<li><button id="markAllAsRead">Mark all as read</button></li>
-					<li><button id="itemMode">All items</button></li>
 				</ul>
 				<ul id="rightGroup">
-				<div class="buttonGroup">
-					<li><button id="moveUp">Up</button></li>
-					<li><button id="moveDown">Down</button></li>
-					</div>
 					<li><button id="reloadWindow">Reload</button></li>
-					<li><button id="optionsLink">Options</button></li>
 				</ul>
 			</nav>
-			<aside>Some Sidebar</aside>
+			<aside>
+				<ul>
+					<li class="header"><a><span>Link</span></a></li>
+					<li><a><span>Link</span></a></li>
+					<li><a><span>Link</span></a></li>
+					<li><a><span>Link</span></a></li>
+					<li class="header"><a><span>Link</span></a></li>
+					<li><a><span>Link</span></a></li>
+					<li><a><span>Link</span></a></li>
+					<li><a><span>Link</span></a></li>
+					<li><a><span>Link</span></a></li>
+					<li><a><span>Link</span></a></li>
+				</ul>
+			</aside>
 			<article>
-				<header>Some Title</header>
+				<header><input type="file" id="importGoogleFeeds" /></header>
 				<section>
 					<p>Some Content</p>
 				</section>

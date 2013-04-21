@@ -1,0 +1,25 @@
+.buttonGroup {
+	border-radius:0px;
+	display:inline-block;
+}
+.buttonGroup li button,
+.buttonGroup li input {
+	/*border-radius:0px;*/
+}
+.buttonGroup li {
+	margin-right:-6px;
+}
+.buttonGroup li:first-child button,
+.buttonGroup li:first-child input {
+	border-top-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.buttonGroup li:last-child {
+	margin-right:0px;
+}
+.buttonGroup li:last-child button,
+.buttonGroup li:last-child input {
+	border-top-left-radius:0px;
+	border-bottom-left-radius:0px;
+}
+

@@ -1,8 +1,15 @@
-// var $ = require("./js/jquery-2.0.0-beta3.js");
+process.on("uncaughtException", function(err) {
+	console.error(err.message, err.stack);
+});
+var path = require("path");
+var root = path.dirname(global.require.main.filename);
+window.localRequire = function(file) {
+	return require(path.resolve(root, file));
+}
 var gui = require('nw.gui');
 var win = gui.Window.get();
+var optionsWindow = null;
 var isMaximized = false;
-console.log(win)
 $(function() {
 	$("#showDevTools").on("click", function() {
 		win.showDevTools();
@@ -19,12 +26,24 @@ $(function() {
 	$("#fullWindow").on("click", function() {
 		win.toggleFullscreen();
 		var self = $(this);
-		if (self.text() === "Exit full screen") {
-			$(this).text("Full screen");
+		if (self.text() === "Exit fullscreen") {
+			$(this).text("Fullscreen");
 		} else {
-			$(this).text("Exit full screen");
+			$(this).text("Exit fullscreen");
 		}
 	});
+	$("#optionsLink").on("click", function() {
+		if (optionsWindow) {
+			optionsWindow.focus();
+			optionsWindow.reloadIgnoringCache();
+		} else {
+			optionsWindow = gui.Window.get(window.open('options.html'));
+			optionsWindow.on('closed', function() {
+				optionsWindow = null;
+			});
+		}
+	});
+
 	$("#maxWindow").on("click", function() {
 		if (!isMaximized) {
 			win.maximize();
@@ -35,5 +54,10 @@ $(function() {
 			isMaximized = false;
 			$(this).text("Maximize");
 		}
+	});
+	$("#importGoogleFeeds").on("change", function() {
+		var options = localRequire("js/options.js");
+		var conversion = localRequire("js/conversion.js");
+		conversion.fromLocal($(this).val(), options.importGoogleLocal);
 	});
 });
