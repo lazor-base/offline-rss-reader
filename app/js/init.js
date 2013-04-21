@@ -8,6 +8,8 @@ window.localRequire = function(file) {
 }
 var gui = require('nw.gui');
 var win = gui.Window.get();
+var config = localRequire("js/config.js");
+config.loadConfig();
 var optionsWindow = null;
 var isMaximized = false;
 $(function() {
@@ -57,7 +59,7 @@ $(function() {
 	});
 	$("#importGoogleFeeds").on("change", function() {
 		var options = localRequire("js/options.js");
-		var conversion = localRequire("js/conversion.js");
-		conversion.fromLocal($(this).val(), options.importGoogleLocal);
+		var config = localRequire("js/config.js");
+		conversion.fromLocal($(this).val(), config.importGoogleLocal);
 	});
 });

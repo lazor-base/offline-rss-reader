@@ -1,7 +1,12 @@
 {
 	"categories": [{
 		"id": "reading",
-		"string": "Reading"
+		"string": "Reading",
+		"category":"general"
+	},{
+		"id": "general",
+		"string": "General",
+		"category":"root"
 	}],
 	"configs": [{
 		"string": "Articles to view.",
@@ -10,9 +15,11 @@
 		"configType": "toggle",
 		"uiType": "button",
 		"values": [{
-			"string": "All items"
+			"string": "All items",
+			"value": "all"
 		}, {
-			"string": "Unread items"
+			"string": "Unread items",
+			"value": "unread"
 		}],
 		"value":0,
 		"tags": ["all items", "unread items"]

@@ -1,6 +1,7 @@
 aside ul {
 	list-style:none;
 	padding:0;
+	margin:0;
 }
 aside ul li {
 	padding-top:1em;
@@ -11,13 +12,18 @@ aside ul li {
 aside ul li:not(.header) span {
 	padding-left:2em;
 }
+aside ul li:not(.header):hover {
+	background:rgba(0,0,0,0.1);
+}
 aside ul li:last-child {
 	border-top:1px solid black;
 }
 aside ul li.header {
 	-webkit-user-select:none;
 	cursor:default;
-	text-transform:capitalize;
+	text-transform:uppercase;
+	font-size:13px;
+	font-weight:bold;
 	padding-left:1em;
 	padding-top:0.25em;
 	padding-bottom:0.25em;
