@@ -1,15 +1,24 @@
 {
 	"categories": [{
+		"id": "setup",
+		"string": "Setup",
+		"category": "general"
+	}, {
 		"id": "reading",
 		"string": "Reading",
-		"category":"general"
-	},{
+		"category": "general"
+	}, {
+		"id": "shortcuts",
+		"string": "Keyboard shortcuts",
+		"category": "general"
+	}, {
 		"id": "general",
 		"string": "General",
-		"category":"root"
+		"category": "root"
 	}],
 	"configs": [{
-		"string": "Articles to view.",
+		"description":"Toggle article visibility between all articles and unread only.",
+		"string": "Articles to view",
 		"category": "reading",
 		"id": "itemMode",
 		"configType": "toggle",
@@ -21,7 +30,23 @@
 			"string": "Unread items",
 			"value": "unread"
 		}],
-		"value":0,
+		"value": 0,
 		"tags": ["all items", "unread items"]
+	}, {
+		"description":"Import a Google Reader opml file.",
+		"string": "Import from Google Reader",
+		"category": "setup",
+		"id": "importGoogleFeeds",
+		"configType": "file",
+		"uiType": "file",
+		"values": [{
+			"string": "Import feed",
+			"value": "import"
+		}, {
+			"string": "Change feed",
+			"value": "change"
+		}],
+		"value": 0,
+		"tags": ["import", "google reader", "opml"]
 	}]
 }

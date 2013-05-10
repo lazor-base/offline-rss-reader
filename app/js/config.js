@@ -3,18 +3,32 @@ var fs = require("fs");
 var listeners = {};
 var localConfig;
 
-exports.loadConfig = function() {
+exports.loadConfig = function(done) {
+	if (localConfig && done) {
+		return done(localConfig);
+	}
 	var fs = require("fs");
-	fs.readFile("content/config.json", 'ascii', function(err, data) {
-		if (err) {
-			fs.readFile("content/config.default.json", 'ascii', function(err, data) {
+	fs.exists("content/config.json", function(exists) {
+		if (!exists) {
+			fs.readFile("content/config.default.json", 'utf8', function(err, data) {
 				if (err) {
 					console.error(err.message, err.stack);
 				}
 				localConfig = JSON.parse(data);
+				if (done) {
+					return done(localConfig);
+				}
 			});
 		} else {
-			localConfig = JSON.parse(data);
+			fs.readFile("content/config.json", 'utf8', function(err, data) {
+				if (err) {
+					console.error(err.message, err.stack);
+				}
+				localConfig = JSON.parse(data);
+				if (done) {
+					return done(localConfig);
+				}
+			});
 		}
 	});
 };
@@ -86,16 +100,20 @@ exports.setValue = function(name, value) {
 exports.toggleValue = function(name) {
 	var thisConfig = exports.getConfigById(name);
 	thisConfig.value++;
-	if (thisConfig.value > thisConfig.values.length) {
+	if (thisConfig.value > thisConfig.values.length - 1) {
 		thisConfig.value = 0;
 	}
 };
 
-exports.importGoogleLocal = function(json) {
+exports.importGoogleLocal = function(jsonObject) {
 	var fs = require('fs');
-	fs.writeFile("content/feeds.json", json, function(err) {
+	fs.writeFile("content/feeds.json", JSON.stringify(jsonObject), function(err) {
 		if (err) {
 			console.error(err.message, err.stack);
+		} else {
+			exports.toggleValue("importGoogleFeeds");
+			exports.saveConfig();
+			console.log("Imported feeds");
 		}
 	});
 };

@@ -235,7 +235,7 @@ input:disabled:-webkit-any([type='password'],
     :-webkit-any(
          button,
          input[type='button'],
-         input[type='submit']):not(.custom-appearance):not(.link-button)) {
+         input[type='submit']):not(.custom-appearance):not(.link-button):not(:disabled)) {
   /* OVERRIDE */
   -webkit-transition: border-color 200ms;
   /* We use border color because it follows the border radius (unlike outline).

@@ -1,0 +1,38 @@
+#searchGroup {
+	width:220px;
+	-webkit-transition:width .2s linear;
+	background:white;
+	z-index:3;
+}
+
+#searchGroup.focus {
+	position:absolute;
+	right:0;
+	width:-webkit-calc(100% - 145px);
+	clear:both;
+	min-height:2em;
+	min-width:160px;
+	display:inline-block;
+}
+
+#searchGroup ul {
+	width:100%;
+}
+
+#searchGroup li:first-child {
+	width:160px;
+	display:inline-block;
+	-webkit-transition:width .2s linear;
+}
+
+#searchGroup.focus li:first-child {
+	width:-webkit-calc(100% - 61px);
+}
+
+#searchBar {
+	width:100%;
+}
+
+#search:not(.visible) {
+	display:none;
+}

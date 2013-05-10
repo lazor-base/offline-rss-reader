@@ -6,14 +6,15 @@
 	"keywords": ["rss", "offline"],
 	"window": {
 		"icon": "icon.png",
-		"toolbar": false,
+		"toolbar": true,
 		"width": 800,
 		"height": 600,
 		"position": "center",
 		"min_width": 800,
 		"min_height": 600,
-		"frame":false
+		"frame":true
 	},
+	"chromium-args" : "--enable-experimental-webkit-features",
 	"bugs": "https://github.com/lazor-base/offline-rss-reader/issues/new",
 	"maintainers": [{
 		"name": "Christopher Hall",

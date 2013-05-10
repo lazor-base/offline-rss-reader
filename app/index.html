@@ -6,9 +6,13 @@
 		<link href="style/main.css" rel="stylesheet" media="all" />
 		<link href="style/chrome.css" rel="stylesheet" media="all" />
 		<link href="style/button.css" rel="stylesheet" media="all" />
+		<link href="style/sidebar.css" rel="stylesheet" media="all" />
+		<link href="style/article.css" rel="stylesheet" media="all" />
+		<link href="style/search.css" rel="stylesheet" media="all" />
 	</head>
 	<body>
-		<section>
+
+		<section id="mainSection">
 			<header id="mainHeader">
 				<img src="icon.ico" width="32" height="32" align="middle" />
 				<section><h2>Offline RSS Reader<h2></section>
@@ -25,35 +29,67 @@
 				</nav>
 			</header>
 			<nav>
-				<ul id="leftGroup">
-					<div class="buttonGroup">
-					<li><input type="search" placeholder="Search or Subscribe" /></li>
-					<li><input type="submit" value="Submit" /></li>
-					</div>
-				</ul>
-				<ul id="middleGroup">
+				<div class="buttonGroup leftGroup" id="searchGroup">
+					<ul>
+						<li><input type="search" placeholder="Search or Subscribe" id="searchBar" /></li>
+						<li><input type="submit" value="Submit" id="searchSubmit" /></li>
+					</ul>
+				</div>
+				<ul class="middleGroup">
 					<li><button id="markAllAsRead">Mark all as read</button></li>
 					<li><button id="itemMode">All items</button></li>
 				</ul>
-				<ul id="rightGroup">
-				<div class="buttonGroup">
-					<li><button id="moveUp">Up</button></li>
-					<li><button id="moveDown">Down</button></li>
+				<ul class="rightGroup">
+					<div class="buttonGroup">
+						<li><button id="moveUp">Up</button></li>
+						<li><button id="moveDown">Down</button></li>
 					</div>
 					<li><button id="reloadWindow">Reload</button></li>
 					<li><button id="optionsLink">Options</button></li>
 				</ul>
 			</nav>
-			<aside>Some Sidebar</aside>
-			<article>
-				<header>Some Title</header>
+			<aside><ul id="mainAside"></ul></aside>
+			<article class="">
+				<header><input type="checkbox" value="select" />
+				<span class="source">WebsiteNamstjffjsgsfjsfjsryjzyjzrtjsrtjzrthzthzthzdthdfth</span><span class="title">Article Title</span><span class="divider"> - </span><span class="summary">Some Content</span></header>
 				<section>
+					<div class="header">
+						<h3><a>Author</a></h3>
+						<span class="byline">From Site by Author.</span>
+					</div>
 					<p>Some Content</p>
 				</section>
-				<footer>Some credits</footer>
+				<footer>Share buttons n stuff.</footer>
+			</article>
+			<article class="read">
+				<header><input type="checkbox" value="select" />
+				<span class="source">WebsiteName</span><span class="title">Article Title</span><span class="divider"> - </span><span class="summary">Some Content</span></header>
+				<section>
+					<div class="header">
+						<h3><a>Author</a></h3>
+						<span class="byline">From Site by Author.</span>
+					</div>
+					<p>Some Content</p>
+				</section>
+				<footer>Share buttons n stuff.</footer>
+			</article>
+			<article class="">
+				<header><input type="checkbox" value="select" />
+				<span class="source">WebsiteName</span><span class="title">Article Title Which is somewhat longer than the rest</span><span class="divider"> - </span><span class="summary">Some Content sdliuhflhuirfuilhgrlhuifglhuigjdfghhufhnjsdvzhsvzdv;jovo;jivjo;fvj;vznjosfhtrsrthsrthsrthstrhsrthsrthsrthstrhthsrthsrtstrhhvnjvz</span></header>
+				<section>
+					<div class="header">
+						<h3><a>Author</a></h3>
+						<span class="byline">From Site by Author.</span>
+					</div>
+					<p>Some Content</p>
+				</section>
+				<footer>Share buttons n stuff.</footer>
 			</article>
 		</section>
-		<script src="js/jquery-2.0.0-beta3.js"></script>
-		<script src="js/init.js"></script>
+		<script src="ui/jquery-2.0.0.min.js"></script>
+		<script src="ui/jquery.xml2json.js"></script>
+		<script src="ui/init.js"></script>
+		<script src="ui/sidebar.js"></script>
+		<script src="ui/article.js"></script>
 	</body>
 </html>

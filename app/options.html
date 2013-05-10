@@ -6,10 +6,12 @@
 		<link href="style/main.css" rel="stylesheet" media="all" />
 		<link href="style/chrome.css" rel="stylesheet" media="all" />
 		<link href="style/button.css" rel="stylesheet" media="all" />
+		<link href="style/sidebar.css" rel="stylesheet" media="all" />
 		<link href="style/options.css" rel="stylesheet" media="all" />
+		<link href="style/search.css" rel="stylesheet" media="all" />
 	</head>
 	<body>
-		<section>
+		<section id="mainSection">
 			<header id="mainHeader">
 				<img src="icon.ico" width="32" height="32" align="middle" />
 				<section><h2>Options<h2></section>
@@ -26,44 +28,26 @@
 				</nav>
 			</header>
 			<nav>
-				<ul id="leftGroup">
-					<div class="buttonGroup">
-					<li><input type="search" placeholder="Search options" /></li>
-					<li><input type="submit" value="Submit" /></li>
-					</div>
+				<div class="buttonGroup leftGroup" id="searchGroup">
+					<ul>
+						<li><input type="search" placeholder="Search options" id="searchBar" /></li>
+						<li><input type="submit" value="Submit" id="searchSubmit" /></li>
+					</ul>
+				</div>
+				<ul class="middleGroup">
 				</ul>
-				<ul id="middleGroup">
-				</ul>
-				<ul id="rightGroup">
+				<ul class="rightGroup">
 					<li><button id="reloadWindow">Reload</button></li>
 				</ul>
 			</nav>
-			<aside id="asideOptions">
-				<!-- <ul>
-					<li class="header"><span>Link</span></li>
-					<li><a><span>Link</span></a></li>
-					<li><a><span>Link</span></a></li>
-					<li><a><span>Link</span></a></li>
-					</ul>
-					<ul>
-					<li class="header"><a><span>Link</span></a></li>
-					<li><a><span>Link</span></a></li>
-					<li><a><span>Link</span></a></li>
-					<li><a><span>Link</span></a></li>
-					<li><a><span>Link</span></a></li>
-					<li><a><span>Link</span></a></li>
-				</ul> -->
+			<aside>
+				<ul id="asideOptions"></ul>
 			</aside>
-			<article>
-				<header><input type="file" id="importGoogleFeeds" /></header>
-				<section>
-					<p>Some Content</p>
-				</section>
-				<footer>Some credits</footer>
-			</article>
 		</section>
-		<script src="js/jquery-2.0.0-beta3.js"></script>
-		<script src="js/init.js"></script>
-		<script src="js/options.js"></script>
+		<script src="ui/jquery-2.0.0.min.js"></script>
+		<script src="ui/jquery.xml2json.js"></script>
+		<script src="ui/init.js"></script>
+		<script src="ui/options.js"></script>
+		<script src="ui/sidebar.js"></script>
 	</body>
 </html>

@@ -1,39 +1,15 @@
-aside ul {
-	list-style:none;
-	padding:0;
-	margin:0;
-}
-aside ul li {
-	padding-top:1em;
-	padding-bottom:1em;
-	border-top:1px solid black;
-	cursor:pointer;
-}
-aside ul li:not(.header) span {
-	padding-left:2em;
-}
-aside ul li:not(.header):hover {
-	background:rgba(0,0,0,0.1);
-}
-aside ul li:last-child {
-	border-top:1px solid black;
-}
-aside ul li.header {
-	-webkit-user-select:none;
-	cursor:default;
-	text-transform:uppercase;
-	font-size:13px;
-	font-weight:bold;
-	padding-left:1em;
-	padding-top:0.25em;
-	padding-bottom:0.25em;
-	border-bottom:2px solid black;
-	border-top:1px solid black;
+.fileChooserText {
+	width:30em;
 }
 
-aside ul li+li.header {
-	border-top:0 solid black;
+.visible {
+	display:block;
 }
-aside ul li:first-child {
-	border-top:0px solid black;
+
+body > section > article {
+	display:none;
+}
+
+h4 {
+	margin:0;
 }

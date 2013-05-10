@@ -172,3 +172,6 @@ pip-log.txt
 config.json
 feeds.json
 subscriptions.xml
+app/content/feeds/*
+app/content/favicon/*
+urls.json

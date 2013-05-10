@@ -3,22 +3,35 @@
 	display:inline-block;
 }
 .buttonGroup li button,
-.buttonGroup li input {
+.buttonGroup li input
+.buttonGroup > button,
+.buttonGroup > input {
 	/*border-radius:0px;*/
 }
 .buttonGroup li {
 	margin-right:-6px;
 }
+.buttonGroup > button,
+.buttonGroup > input {
+	margin-right: -1px;
+}
+
 .buttonGroup li:first-child button,
-.buttonGroup li:first-child input {
+.buttonGroup li:first-child input,
+.buttonGroup > button:first-child,
+.buttonGroup > input:first-child {
 	border-top-right-radius:0px;
 	border-bottom-right-radius:0px;
 }
-.buttonGroup li:last-child {
+.buttonGroup li:last-child,
+.buttonGroup > button:last-child,
+.buttonGroup > input:last-child {
 	margin-right:0px;
 }
 .buttonGroup li:last-child button,
-.buttonGroup li:last-child input {
+.buttonGroup li:last-child input,
+.buttonGroup  > button:last-child,
+.buttonGroup  > input:last-child {
 	border-top-left-radius:0px;
 	border-bottom-left-radius:0px;
 }
