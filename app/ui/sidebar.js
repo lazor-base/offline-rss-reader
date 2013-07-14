@@ -28,8 +28,8 @@ config.loadConfig(function(localConfig) {
 		$("#mainSection > aside").append(uiToolKit.searchTab());
 		$("#mainSection").append(uiToolKit.searchPage());
 		//when you click on a header link it collapses that section in the sidebar
-		$(document).on("click", "li.header", function() {
-			$(this).toggleClass("open").next().toggleClass("hidden");
+		$(document).on("click", "li.header .arrow", function() {
+			$(this).parent().toggleClass("open").next().toggleClass("hidden");
 		});
 		// make the first article visible
 		$("article:first-of-type").addClass("visible");

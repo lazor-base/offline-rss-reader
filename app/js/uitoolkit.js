@@ -27,7 +27,7 @@ exports.searchPage = function() {
 };
 
 exports.sideBar = function(feedsList, callback) {
-	var feedKit = window.localRequire("js/feed.js");
+	var feedKit = localRequire("js/feed.js");
 	var sideNodes = {
 		root: document.createDocumentFragment(),
 		"@after": document.createDocumentFragment()
@@ -102,3 +102,4 @@ exports.sideBar = function(feedsList, callback) {
 	// var mainAside = document.getElementById("mainAside");
 	// mainAside.insertBefore(sideNodes.root, mainAside.firstChild);
 };
+

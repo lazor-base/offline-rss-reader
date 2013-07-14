@@ -3,7 +3,7 @@ process.on("uncaughtException", function(err) {
 });
 var path = require("path");
 var root = path.dirname(global.require.main.filename);
-window.localRequire = function(file) {
+window.localRequire = global.localRequire = function(file) {
 	return require(path.resolve(root, file));
 }
 var gui = require('nw.gui');

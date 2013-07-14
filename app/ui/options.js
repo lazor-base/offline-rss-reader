@@ -1,4 +1,4 @@
-var config = window.localRequire("js/config.js");
+var config = localRequire("js/config.js");
 
 var buildPage = function() {
 	var document = window.document;

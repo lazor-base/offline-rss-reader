@@ -1,4 +1,4 @@
-var network = window.localRequire("js/network.js");
+var network = localRequire("js/network.js");
 
 exports.fromUrl = function(stringUrl, callback) {
 	"use strict";

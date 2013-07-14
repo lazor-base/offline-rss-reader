@@ -46,6 +46,15 @@ aside ul li.header {
 	border-top:1px solid black;
 }
 
+aside ul li.header span:not(.arrow) {
+	cursor: pointer;
+width: 160px;
+display: inline-block;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
 aside ul li+li.header {
 	border-top:0 solid black;
 }
@@ -87,11 +96,26 @@ padding-left:2em;
 }
 
 .arrow {
-	margin-left:3px;
 	display: inline-block;
-	-webkit-transform: rotate(0deg);
-	-webkit-transition:-webkit-transform .2s linear;
-	float:right;
+-webkit-transform: rotate(0deg);
+-webkit-transition: -webkit-transform .2s linear;
+float: right;
+cursor: pointer;
+z-index: 3;
+margin-top: -3px;
+position: absolute;
+right: 7px;
+height: 24px;
+padding-top: 2px;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.header:hover {
+	background: #eee;
+}
+.arrow:hover {
+	background: #ddd;
 }
 
 .header.open {
@@ -102,4 +126,13 @@ padding-left:2em;
 
 .header.open .arrow {
 	-webkit-transform: rotate(90deg);
+right: 0px;
+width: 28px;
+padding-left: 0px;
+padding-right: 0px;
+margin-top: -4px;
+padding-top: 3px;
+padding-bottom: 5px;
+text-align: center;
+height: 26px;
 }

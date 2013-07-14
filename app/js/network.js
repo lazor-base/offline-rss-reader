@@ -1,3 +1,5 @@
+var networkStatus = localRequire("js/status.js");
+
 var stack = {
 	urls: [],
 	methods: [],
@@ -148,6 +150,9 @@ function handleErrors() {
 					stack.methods.push(thisMethod);
 					totalConnections.push(thisUrl);
 				} else {
+					networkStatus.fixFeed(stringUrl, status, function(feed) {
+						feed.quarantine(thisUrl);
+					});
 					permanentErrors.urls.push(thisUrl);
 					permanentErrors.messages.push(thisMessage);
 				}
@@ -167,6 +172,9 @@ function handleErrors() {
 				if (!thisMessage) {
 					console.error(thisMessage, e, errors.messages);
 				} else {
+					networkStatus.fixFeed(stringUrl, status, function(feed) {
+						feed.quarantine(thisUrl);
+					});
 					permanentErrors.urls.push(thisUrl);
 					permanentErrors.messages.push(thisMessage);
 				}
@@ -226,20 +234,34 @@ exports.request = function(stringUrl, method, callback) {
 		response.on('end', function() {
 			request.setSocketKeepAlive(false);
 			connections--;
-			if (status !== 200 || headers["content-type"].indexOf("text/html") > -1) {
-				console.warn(stringUrl, status, headers, options, str)
-				errors.urls.push(stringUrl);
-				errors.messages.push(status);
-				errors.methods.push(method);
-				errors.callbacks.push(callback);
-			} else {
+			if (networkStatus.isGood(status, method)) {
 				callback({
 					"url": stringUrl,
 					"content": str,
 					"status": status,
 					"headers": headers
 				});
+			} else {
+				console.warn(stringUrl, status, headers, options, str)
+				errors.urls.push(stringUrl);
+				errors.messages.push(status);
+				errors.methods.push(method);
+				errors.callbacks.push(callback);
 			}
+			// if (status !== 200 || headers["content-type"].indexOf("text/html") > -1) {
+			// 	console.warn(stringUrl, status, headers, options, str)
+			// 	errors.urls.push(stringUrl);
+			// 	errors.messages.push(status);
+			// 	errors.methods.push(method);
+			// 	errors.callbacks.push(callback);
+			// } else {
+			// 	callback({
+			// 		"url": stringUrl,
+			// 		"content": str,
+			// 		"status": status,
+			// 		"headers": headers
+			// 	});
+			// }
 			exports.processStack();
 		});
 	};

@@ -15,13 +15,13 @@ exports.getFeed = function(url, callback) {
 
 function download(url, callback) {
 	"use strict";
-	var network = window.localRequire("js/network.js");
+	var network = localRequire("js/network.js");
 	network.addToStack(url, "GET", callback);
 }
 
 function processFeed(requestObject, callback) {
 	"use strict";
-	var conversion = window.localRequire("js/conversion.js");
+	var conversion = localRequire("js/conversion.js");
 	conversion.fromString(requestObject.content, function(result) {
 		if (!result.channel && (!result.author && !result.entry)) {
 			console.error(requestObject.content, requestObject.url, requestObject.headers, requestObject.status);
@@ -33,9 +33,9 @@ function processFeed(requestObject, callback) {
 					feed = result;
 				}
 				feed = exports.orderFeed(feed, requestObject.url);
-				exports.saveFeed(requestObject.url, JSON.stringify(feed), function() {
-					exports.getUnread(requestObject.url, callback);
-				});
+				// exports.saveFeed(requestObject.url, JSON.stringify(feed), function() {
+				// 	exports.getUnread(requestObject.url, callback);
+				// });
 			});
 		}
 	});
@@ -43,8 +43,11 @@ function processFeed(requestObject, callback) {
 
 exports.orderFeed = function(feed, url) {
 	"use strict";
-	console.log(url, feed)
 	if (feed.channel && feed.channel.item) {
+		if(!Array.isArray(feed.channel.item)) {
+			// sometimes the feed just gets sent as an object if there is only one item (If there is no items then there is no "item" array)
+			feed.channel.item = [feed.channel.item];
+		}
 		feed.channel.item.sort(function(a, b) {
 			a = new Date(a.pubDate);
 			b = new Date(b.pubDate);
@@ -63,8 +66,9 @@ exports.orderFeed = function(feed, url) {
 
 exports.needUpdate = function(url, callback) {
 	"use strict";
-	var network = window.localRequire("js/network.js");
+	var network = localRequire("js/network.js");
 	network.addToStack(url, "HEAD", function() {
+		//check if file exists and whatnot
 		callback(true);
 	});
 };
@@ -74,30 +78,30 @@ exports.mergeFeed = function(newFeed, oldFeed) {
 	var combinedFeed = oldFeed;
 	var dates = [];
 	if (newFeed.channel && newFeed.channel.item) {
-		if(!combinedFeed.channel.item) {
+		if (!combinedFeed.channel.item) {
 			combinedFeed.channel.item = [];
 		}
-		for (var i = 0; i < newFeed.channel.item.length; i++) {
-			var newItem = newFeed.channel.item[i];
+		for (var i = 0; i < oldFeed.channel.item.length; i++) {
+			var newItem = oldFeed.channel.item[i];
 			dates.push(newItem.pubDate);
 		}
-		for (var e = 0; e < oldFeed.channel.item.length; e++) {
-			var oldItem = oldFeed.channel.item[e];
+		for (var e = 0; e < newFeed.channel.item.length; e++) {
+			var oldItem = newFeed.channel.item[e];
 			if (dates.indexOf(oldItem.pubDate) === -1) {
 				combinedFeed.channel.item.push(oldItem);
 			}
 		}
 	}
 	if (newFeed.entry) {
-		if(!combinedFeed.entry) {
+		if (!combinedFeed.entry) {
 			combinedFeed.entry = [];
 		}
-		for (var i = 0; i < newFeed.entry.length; i++) {
-			var newItem = newFeed.entry[i];
+		for (var i = 0; i < oldFeed.entry.length; i++) {
+			var newItem = oldFeed.entry[i];
 			dates.push(newItem.updated);
 		}
-		for (var e = 0; e < oldFeed.entry.length; e++) {
-			var oldItem = oldFeed.entry[e];
+		for (var e = 0; e < newFeed.entry.length; e++) {
+			var oldItem = newFeed.entry[e];
 			if (dates.indexOf(oldItem.updated) === -1) {
 				combinedFeed.entry.push(oldItem);
 			}
@@ -284,7 +288,7 @@ exports.getLocalFeeds = function(callback) {
 
 exports.getRemoteFeed = function(url, callback) {
 	"use strict";
-	var conversion = window.localRequire("js/conversion.js");
+	var conversion = localRequire("js/conversion.js");
 	conversion.fromUrl(url, function(jsonObject, url) {
 		var jsonString = JSON.stringify(jsonObject);
 		callback(url, jsonString);
@@ -313,7 +317,7 @@ exports.saveFeed = function(url, jsonString, done) {
 
 exports.verifyFeed = function(url, jsonString, update, noUpdate) {
 	"use strict";
-	var network = window.localRequire("js/network.js");
+	var network = localRequire("js/network.js");
 	var feed = JSON.parse(jsonString);
 	var path = "content/feeds/" + exports.feedId(url);
 	fs.exists(path, function(exists) {
@@ -346,4 +350,55 @@ exports.feedId = function(feed) {
 	} else {
 		return feed.text.replace(/[^a-zA-Z ]/g, "");
 	}
+};
+
+exports.quarantine = function(url) {
+	"use strict";
+	fs.exists("content/feeds.json", function(exists) {
+		if (!exists) {
+			console.error("No feeds imported.");
+			return false;
+		}
+		fs.readFile("content/feeds.json", 'utf8', function(err, data) {
+			if (err) {
+				console.error(err.message, err.stack);
+			} else {
+				try {
+					data = JSON.parse(data);
+				} catch (e) {
+					console.log(e, data);
+				}
+				if (!data.quarantine) {
+					data.quarantine = [];
+				}
+				var feedItem;
+				var outline = data.body.outline;
+				for (var i = 0; i < outline.length; i++) {
+					var point = outline[i];
+					if (point.outline) {
+						for (var e = 0; e < point.outline.length; e++) {
+							var newPoint = point.outline[e];
+							if (newPoint.xmlUrl === url) {
+								feedItem = point.outline.splice(e, 1);
+								e = point.outline.length;
+								i = outline.length;
+							}
+						}
+					} else {
+						if (point.xmlUrl === url) {
+							feedItem = outline.splice(i, 1);
+							i = outline.length;
+						}
+					}
+				}
+				console.log(feedItem)
+				data.quarantine.push(feedItem);
+				fs.writeFile("content/feeds.json", JSON.stringify(data), function(err) {
+					if (err) {
+						console.error(err);
+					}
+				});
+			}
+		});
+	});
 };
